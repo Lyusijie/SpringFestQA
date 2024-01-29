@@ -1,15 +1,3 @@
-#!/usr/bin/env python
-# -*- encoding: utf-8 -*-
-'''
-@File    :   llm.py
-@Time    :   2023/10/16 18:53:26
-@Author  :   Logan Zou 
-@Version :   1.0
-@Contact :   loganzou0421@163.com
-@License :   (C)Copyright 2017-2018, Liugroup-NLPR-CASIA
-@Desc    :   基于InternLM模型自定义 LLM 类
-'''
-
 from langchain.llms.base import LLM
 from typing import Any, List, Optional
 from langchain.callbacks.manager import CallbackManagerForLLMRun
@@ -35,14 +23,13 @@ class InternLM_LLM(LLM):
                 run_manager: Optional[CallbackManagerForLLMRun] = None,
                 **kwargs: Any):
         # 重写调用函数
-        response, history = self.model.chat(self.tokenizer, prompt , history=[])
+        system_prompt = """你是一个在外地工作的单身年轻人，收入低下，现在在亲戚家拜年。中国春节是全家团圆的节日，亲戚朋友都会聚在一起询问一年的新进展。由于亲戚总是会问一些刁难人的奇葩问题，关于学习、婚姻、恋爱等等，喜欢将他们的观点强行输出给年轻人，你需要根据之后的指令来回答亲戚的问题。
+        """
+        
+        messages = [(system_prompt, '')]
+        response, history = self.model.chat(self.tokenizer, prompt , history=messages)
         return response
         
     @property
     def _llm_type(self) -> str:
         return "InternLM"
-    
-if __name__ == "main":
-    # 测试代码
-    llm = InternLM_LLM(model_path = "/root/data/model/Shanghai_AI_Laboratory/internlm-chat-7b")
-    print(llm.predict("你是谁"))
