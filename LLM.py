@@ -15,7 +15,9 @@ class InternLM_LLM(LLM):
         super().__init__()
         print("正在从本地加载模型...")
         self.tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)
+        print("完成AutoTokenizer...")
         self.model = AutoModelForCausalLM.from_pretrained(model_path, trust_remote_code=True).to(torch.bfloat16).cuda()
+        print("完成AutoModelForCausalLM...")
         self.model = self.model.eval()
         print("完成本地模型的加载")
 

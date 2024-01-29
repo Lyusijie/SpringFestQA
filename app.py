@@ -44,7 +44,7 @@ def change_prompt3(*args):
     回答:"""
     
 def init():
-    model_dir = snapshot_download('binbeing/SpringFestQA'
+    model_dir = snapshot_download('Shanghai_AI_Laboratory/internlm-chat-7b'
                                   , cache_dir='./')
     os.environ['HF_ENDPOINT'] = 'https://hf-mirror.com'
     # 下载模型
@@ -65,7 +65,7 @@ def load_chain():
         embedding_function=embeddings
     )
 
-    llm = InternLM_LLM(model_path = "binbeing/SpringFestQA")
+    llm = InternLM_LLM(model_path = "Shanghai_AI_Laboratory/internlm-chat-7b")
 
     # 定义一个 Prompt Template
     template = """Given the following conversation and a follow up question, rephrase the follow up question to be a standalone question, in its original language.
