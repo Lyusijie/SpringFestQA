@@ -41,6 +41,7 @@ model_dir = snapshot_download('binbeing/SpringFestQA', cache_dir='./')
 
 ## 模型部署
 - 部署到应用平台（以OpenXLab为例）
+
 仅需要 Fork 本仓库，然后在 OpenXLab 上创建一个新的项目，将 Fork 的仓库与新建的项目关联，即可在 OpenXLab 上部署 SpringFestQA。
 - 部署到本地（以InternStudio开发机为例）
 
