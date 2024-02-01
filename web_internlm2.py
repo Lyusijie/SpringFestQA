@@ -23,13 +23,7 @@ from transformers import AutoTokenizer, AutoModelForCausalLM  # isort: skip
 from modelscope.hub.snapshot_download import snapshot_download
 import os 
 
-# 检查本地是否有对应的权重文件夹
-model_dir_path = os.path.join(os.getcwd(), 'model', 'binbeing', 'SpringFestQA') 
-
-if not os.path.exists(model_dir_path):
-    model_dir = snapshot_download('binbeing/SpringFestQA', cache_dir='./model')
-else:
-    model_dir = model_dir_path
+model_dir = snapshot_download('binbeing/SpringFestQA')
 
 logger = logging.get_logger(__name__)
 
