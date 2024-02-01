@@ -1,8 +1,7 @@
 # 首先导入所需第三方库
 from langchain.document_loaders import UnstructuredFileLoader
 from langchain.document_loaders import UnstructuredMarkdownLoader
-from langchain.document_loaders import PyPDFLoader # for loading the pdf
-from langchain.chains import ChatVectorDBChain # for chatting with the pdf
+from langchain.document_loaders.csv_loader import CSVLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Chroma
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
@@ -22,7 +21,7 @@ def get_files(dir_path):
                 file_list.append(os.path.join(filepath, filename))
             elif filename.endswith(".txt"):
                 file_list.append(os.path.join(filepath, filename))
-            elif filename.endswith(".pdf"):
+            elif filename.endswith(".csv"):
                 file_list.append(os.path.join(filepath, filename))
     return file_list
 
@@ -40,8 +39,8 @@ def get_text(dir_path):
             loader = UnstructuredMarkdownLoader(one_file)
         elif file_type == 'txt':
             loader = UnstructuredFileLoader(one_file)
-        elif file_type == 'pdf':
-            loader = PyPDFLoader(one_file)
+        elif file_type == 'csv':
+             loader = CSVLoader(file_path=one_file)
         else:
             # 如果是不符合条件的文件，直接跳过
             continue
@@ -50,7 +49,13 @@ def get_text(dir_path):
 
 # 目标文件夹
 tar_dir = [
-    "/root/data/paper_demo/graph",
+    "/root/data/InternLM",
+    "/root/data/InternLM-XComposer",
+    "/root/data/lagent",
+    "/root/data/lmdeploy",
+    "/root/data/opencompass",
+    "/root/data/xtuner",
+     "/root/data/newyear"
 ]
 
 # 加载目标文件
@@ -61,7 +66,7 @@ for dir_path in tar_dir:
 # 对文本进行分块
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=500, chunk_overlap=150)
-split_docs = text_splitter.split_documents(docs[:10])
+split_docs = text_splitter.split_documents(docs)
 
 # 加载开源词向量模型
 embeddings = HuggingFaceEmbeddings(model_name="/root/data/model/sentence-transformer")
