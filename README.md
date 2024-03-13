@@ -19,7 +19,7 @@ https://openxlab.org.cn/apps/detail/SijieLyu/SpringFestQA
 
 https://www.bilibili.com/video/BV1rT4m1S7xR/?share_source=copy_web&vd_source=61d6ddb943fd82d8fec0f061e0b7684d
 ## SpringFestQA整体流程框架
-待流程图完成后补充到这里
+![1710365098913](https://github.com/Lyusijie/SpringFestQA/assets/48045292/ccbe93a2-5e72-48dd-9056-dcf30cbe5ade)
 
 ## 数据收集
 数据集放在本仓库的data目录下：
@@ -40,10 +40,10 @@ https://www.bilibili.com/video/BV1rT4m1S7xR/?share_source=copy_web&vd_source=61d
 
 ## 模型微调
 依据MBTI数据和QA对，使用Xtuner对InternLM-Chat-7B的性格和内在知识储备进行部分参数微调，形成微调后的模型SpringFest。
-性格的训练出来但回答不太有用，要多轮对话才能体现人格，但大模型多轮对话能力有限，发现效果不如预期。【可以在gradio页面上增加I/E选项，后端可调用不同模型】
+性格的训练出来但回答不太有用，要多轮对话才能体现人格，但大模型多轮对话能力有限，发现效果不如预期。
 
 ## 构建知识库（RAG）
-依据QA对，基于langchain框架构建进行embedding，形成外挂知识库，可以针对用户的 query 进行语义向量检索，得到与用户提问相关的知识片段。【可以在页面上增加prompt提示】
+依据QA对，基于langchain框架构建进行embedding，形成外挂知识库，可以针对用户的 query 进行语义向量检索，得到与用户提问相关的知识片段。
 
 ## Prompt调优
 
@@ -54,7 +54,6 @@ https://www.bilibili.com/video/BV1rT4m1S7xR/?share_source=copy_web&vd_source=61d
 
 2.通过委婉认真、转移话题、阴阳怪气三个风格的内置prompt，满足用户自行切换回答风格的需求。
 
-[图片]
 
 ## ModelScope模型
 模型权重链接(代码中已内置下载，不需要操作)：https://www.modelscope.cn/binbeing/SpringFestQA.git
